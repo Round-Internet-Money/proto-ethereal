@@ -1,1 +1,1 @@
-hello
+Defines a protobuf spec for the Ethereal exchange api.
