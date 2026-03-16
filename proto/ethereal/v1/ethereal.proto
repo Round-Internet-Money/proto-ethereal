@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/roundinternetmoney/protocolbuffers;pb";
+option go_package = "github.com/roundinternetmoney/protocolbuffers;protocolbuffers";
 
 package ethereal.v1;
 
@@ -26,8 +26,8 @@ enum Side {
 
 enum OrderType {
     ORDER_TYPE_UNSPECIFIED = 0;
-    ORDER_TYPE_LIMIT = 1;
-    ORDER_TYPE_MARKET = 2;
+    ORDER_TYPE_LIMIT = 1; // limit
+    ORDER_TYPE_MARKET = 2; // market
 }
 
 message L2Book {

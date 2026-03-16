@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+option go_package = "github.com/roundinternetmoney/protocolbuffers;protocolbuffers";
+
+package aster.v1;
+
+message StreamMessage {
+  string stream = 1;
+  bytes data = 2;
+}
+//TODO: Account Information V4 (USER_DATA 
+
+message ExchangeInfo {
+  repeated Symbol symbols = 1;
+}
+
+message Symbol {
+  string symbol = 1;
+  repeated Filter filters = 2;
+}
+
+message Filter {
+  // JSON: "filterType"
+  string filter_type = 1;
+
+  // Binance-style numeric strings kept as string
+  string min_qty   = 2;
+  string max_qty   = 3;
+  string step_size = 4;
+  string tick_size = 5;
+}
+
+message AccountInfo {
+  int64 update_time = 5;
+
+  string total_initial_margin = 6;
+  string total_maint_margin = 7;
+  string total_wallet_balance = 8;
+  string total_unrealized_profit = 9;
+  string total_margin_balance = 10;
+  string total_position_initial_margin = 11;
+  string total_open_order_initial_margin = 12;
+  string total_cross_wallet_balance = 13;
+  string total_cross_un_pnl = 14;
+  string available_balance = 15;
+  string max_withdraw_amount = 16;
+
+  repeated Asset assets = 17;
+  repeated AsterPosition positions = 18;
+}
+
+message Asset {
+  string asset = 1;
+  string wallet_balance = 2;
+  string unrealized_profit = 3;
+  string margin_balance = 4;
+  string maint_margin = 5;
+  string initial_margin = 6;
+  string position_initial_margin = 7;
+  string open_order_initial_margin = 8;
+  string cross_wallet_balance = 9;
+  string cross_un_pnl = 10;
+  string available_balance = 11;
+  string max_withdraw_amount = 12;
+  bool margin_available = 13;
+  int64 update_time = 14;
+}
+
+message AsterPosition {
+  string symbol = 1;
+  string initial_margin = 2;
+  string maint_margin = 3;
+  string unrealized_profit = 4;
+  string position_initial_margin = 5;
+  string open_order_initial_margin = 6;
+  string leverage = 7;
+  bool isolated = 8;
+  string entry_price = 9;
+  string max_notional = 10;
+  string position_side = 11;
+  string position_amt = 12;
+  int64 update_time = 13;
+}
