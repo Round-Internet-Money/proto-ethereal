@@ -1,5 +1,7 @@
 name: Buf CI
 on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
   push:
     paths:
       - '**.proto'
@@ -8,16 +10,10 @@ on:
       - '**/buf.md'
       - '**/README.md'
       - '**/LICENSE'
-  delete:
-    paths:
-      - '**.proto'
-      - '**/buf.yaml'
-      - '**/buf.lock'
-      - '**/buf.md'
-      - '**/README.md'
-      - '**/LICENSE'
+  delete:    
 permissions:
   contents: read
+  pull-requests: write  
 jobs:
   buf:
     runs-on: ubuntu-latest
@@ -26,5 +22,5 @@ jobs:
       - uses: bufbuild/buf-action@v1
         with:
           token: ${{ secrets.BUF_TOKEN }}
-          lint: ${{ github.event_name == 'push' }}
-          format: ${{ github.event_name == 'push' }}
+          breaking: false
+          pr_comment: false

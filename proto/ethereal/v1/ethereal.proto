@@ -8,20 +8,20 @@ import "google/protobuf/struct.proto";
 
 enum EventType {
   EVENT_TYPE_EVENT_UNSPECIFIED = 0;
-  EVENT_TYPE_L2_BOOK = 1;
-  EVENT_TYPE_TICKER = 2;
-  EVENT_TYPE_TRADE_FILL = 3;
-  EVENT_TYPE_SUBACCOUNT_LIQUIDATION = 4;
-  EVENT_TYPE_POSITION_UPDATE = 5;
-  EVENT_TYPE_ORDER_UPDATE = 6;
-  EVENT_TYPE_ORDER_FILL = 7;
-  EVENT_TYPE_TOKEN_TRANSFER = 8;
+  EVENT_TYPE_L2_BOOK = 1; // L2Book
+  EVENT_TYPE_TICKER = 2; // Ticker
+  EVENT_TYPE_TRADE_FILL = 3; // TradeFill
+  EVENT_TYPE_SUBACCOUNT_LIQUIDATION = 4; // SubaccountLiquidation
+  EVENT_TYPE_POSITION_UPDATE = 5; // PositionUpdate
+  EVENT_TYPE_ORDER_UPDATE = 6; // OrderUpdate
+  EVENT_TYPE_ORDER_FILL = 7; // OrderFill
+  EVENT_TYPE_TOKEN_TRANSFER = 8; // TokenTransfer
 }
 
 enum Side {
     SIDE_UNSPECIFIED = 0;
-    SIDE_BUY = 1;
-    SIDE_SELL = 2;
+    SIDE_BUY = 1; // offer with bids
+    SIDE_SELL = 2; // offer with asks
 }
 
 enum OrderType {
@@ -31,21 +31,21 @@ enum OrderType {
 }
 
 message L2Book {
-    string e = 1; // event string
+    string e = 1; // event
     int64 t = 2; // epoch
     message Data {
         string s = 1;
         int64 t = 2;
         optional int64 pt = 3;
-        repeated google.protobuf.ListValue a = 6;
-        repeated google.protobuf.ListValue b = 7;
+        repeated google.protobuf.ListValue a = 6; // ask diffs
+        repeated google.protobuf.ListValue b = 7; // bid diffs
     }
     Data data = 3;
 }
 
 message Ticker {
-    string e = 1;
-    int64 t = 2;
+    string e = 1; // event
+    int64 t = 2; // epoch
     message Data {
         string s = 1;
         int64 t = 2;
