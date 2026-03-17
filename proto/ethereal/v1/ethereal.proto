@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/roundinternetmoney/pb-go;pb";
+option go_package = "github.com/roundinternetmoney/proto-dex;pb";
 
 package ethereal.v1;
 
