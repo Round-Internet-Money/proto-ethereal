@@ -1,0 +1,38 @@
+name: Buf CI
+
+on:
+  pull_request:
+    paths:
+      - "**/*.proto"
+      - "buf.yaml"
+      - "buf.lock"
+      - "buf.gen.yaml"
+      - "Makefile"
+      - "go.mod"
+      - "go.sum"
+      - ".github/workflows/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.proto"
+      - "buf.yaml"
+      - "buf.lock"
+      - "buf.gen.yaml"
+      - "Makefile"
+      - "go.mod"
+      - "go.sum"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+
+jobs:
+  buf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@v1
+        with:
+          token: ${{ secrets.BUF_TOKEN }}
+          pr_comment: false
