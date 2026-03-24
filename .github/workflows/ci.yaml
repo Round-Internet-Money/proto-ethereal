@@ -37,5 +37,8 @@ jobs:
           token: ${{ secrets.BUF_TOKEN }}
           pr_comment: false
 
-      - name: build
+      - name: lint
         run: make buf
+
+      - name: build
+        run: make generate
