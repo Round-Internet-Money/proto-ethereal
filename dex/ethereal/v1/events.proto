@@ -65,7 +65,7 @@ message Ticker {
 message TradeFill {
     string e = 1; // event
     int64 t = 2; // epoch
-    message Fill {
+    message Data {
         string s = 1;
         int64 t = 2;
         message Fill {
